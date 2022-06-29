@@ -1,0 +1,22 @@
+img {
+width:200px;
+
+}
+
+.recipe {
+border: 2px;
+border-style: solid;
+border-color: black;
+border-collapse: collapse;
+}
+
+tr:nth-child(odd) {
+    background-color:bisque;
+}
+tr:nth-child(even) {
+    background-color:#fff;
+}
+
+th {
+    background-color:#fff;
+}
