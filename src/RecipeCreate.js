@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 function RecipeCreate({handleAddRecipe}) {
 
+  //create an initial definition for the form (all fields are blank)
   const initialFormState = {
     name: "",
     cuisine: "",
@@ -11,6 +12,7 @@ function RecipeCreate({handleAddRecipe}) {
     preparation: "",
   };
   
+  //create state for form data
   const [formData, setFormData] = useState({ ...initialFormState });
   const handleChange = ({ target }) => {
     setFormData({
@@ -19,41 +21,53 @@ function RecipeCreate({handleAddRecipe}) {
     });
   };
 
-  //define state variables and the state call back funtion for each field on the form
+  //When the user clicks on the submit button
  const handleSubmit = (event) => {
   event.preventDefault();
 
+  //validate the input data
   let alertMessage = "";
+
+  //name must be entered
   if (formData.name === "") {
     alertMessage = alertMessage + "Name must be entered; "
   }
  
+  //cuisine must be entered
   if (formData.cuisine === "") {
     alertMessage = alertMessage + "Cuisine must be entered; "
   }
 
+  //photo must be entered
   if (formData.photo === "") {
     alertMessage = alertMessage + "URL for photo must be entered; "
   }
 
+  //photo must be a valid URL
   if(!isValidURL(formData.photo)) {
     alertMessage = alertMessage + "URL for photo is not valid; "
   }
 
+  //ingredients must be entered
   if (formData.ingredients === "") {
     alertMessage = alertMessage + "Ingredients must be entered; "
   }
 
+  //preparation must be entered
   if (formData.preparation === "") {
     alertMessage = alertMessage + "Preparation must be entered; "
   }
   
+  //if alertMessage is blank, all inputs validated properly
   if (alertMessage === "") {
-    console.log(formData)
+        //pass the form data back to the App,js code to add to the recipe state
          handleAddRecipe(formData);
+         //reset the form fields to their original state
          setFormData({ ...initialFormState });
-       document.getElementById("alertMessage").innerText = "";
+         //clear the error message on the form that the user sees
+         document.getElementById("alertMessage").innerText = "";
   } else {
+    //if the alert message was not blank, display the errors to the user
     document.getElementById("alertMessage").innerText = alertMessage;
   }
  };   
@@ -83,10 +97,12 @@ function RecipeCreate({handleAddRecipe}) {
   );
 }
 
+//funtion to validate the url using regular expressions
 function isValidURL(string) {
   var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
   return (res !== null)
 };
 
 export default RecipeCreate;
+
 
