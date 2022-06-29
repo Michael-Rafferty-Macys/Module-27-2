@@ -1,4 +1,3 @@
-
 import React from "react"
 import "./FormatRecipe.css";
 
@@ -7,7 +6,7 @@ function FormatRecipe({recipe, index, handleDeleteRecipe} ) {
     <tr className="recipe" key={index}>
      <td>{recipe.name}</td>
       <td>{recipe.cuisine}</td>
-      <td>{recipe.photo}<img src={recipe.photo} alt={recipe.name}/>
+      <td><img src={recipe.photo} alt={recipe.name}/>
       </td>
       <td>{recipe.ingredients}</td>
       <td>{recipe.preparation}</td>
@@ -16,4 +15,3 @@ function FormatRecipe({recipe, index, handleDeleteRecipe} ) {
   )
 }
 export default FormatRecipe;
-
